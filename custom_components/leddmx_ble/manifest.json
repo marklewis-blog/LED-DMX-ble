@@ -1,5 +1,5 @@
 {
-  "domain": "led-dmx-ble",
+  "domain": "leddmx_ble",
   "name": "LED DMX Bluetooth",
   "bluetooth": [
     {
