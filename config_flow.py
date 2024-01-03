@@ -1,4 +1,4 @@
-"""Config flow for govee ble integration."""
+"""Config flow for LED DMX ble integration."""
 from __future__ import annotations
 
 from typing import Any
@@ -17,8 +17,8 @@ from homeassistant.data_entry_flow import FlowResult
 from .const import DOMAIN
 
 
-class GoveeConfigFlow(ConfigFlow, domain=DOMAIN):
-    """Handle a config flow for govee."""
+class LedDmxConfigFlow(ConfigFlow, domain=DOMAIN):
+    """Handle a config flow for LED DMX."""
 
     VERSION = 1
 

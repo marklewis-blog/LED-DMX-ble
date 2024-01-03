@@ -1,0 +1,21 @@
+{
+  "domain": "led-dmx-ble",
+  "name": "LED DMX Bluetooth",
+  "bluetooth": [
+    {
+      "local_name": "LEDDMX*",
+      "connectable": false
+    },
+    {
+      "manufacturer_id": 192,
+      "service_uuid": "0000ffb0-0000-1000-8000-00805f9b34fb",
+      "connectable": false
+    }
+  ],
+  "codeowners": ["@bdraco", "@PierreAronnax"],
+  "config_flow": true,
+  "dependencies": ["bluetooth_adapters"],
+  "documentation": "https://github.com/marklewis-blog/LED-DMX-ble",
+  "iot_class": "local_push",
+  "requirements": ["led-dmx-ble==0.24.0"]
+}
