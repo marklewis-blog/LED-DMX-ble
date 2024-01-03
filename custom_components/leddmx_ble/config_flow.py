@@ -5,7 +5,7 @@ import logging
 from typing import Any
 
 from bluetooth_data_tools import human_readable_name
-from led-dmx-ble import BLEAK_EXCEPTIONS, LEDBLE
+from leddmx_ble import BLEAK_EXCEPTIONS, LEDBLE
 import voluptuous as vol
 
 from homeassistant import config_entries
