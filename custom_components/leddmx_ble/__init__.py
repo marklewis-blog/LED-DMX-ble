@@ -1,4 +1,4 @@
-"""The LED BLE integration."""
+"""The LED DMX BLE integration."""
 from __future__ import annotations
 
 import asyncio
