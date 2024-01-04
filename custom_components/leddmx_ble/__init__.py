@@ -4,9 +4,8 @@ from __future__ import annotations
 import asyncio
 from datetime import timedelta
 import logging
-import leddmx_ble
 
-from leddmx_ble import BLEAK_EXCEPTIONS, LEDBLE
+#from leddmx_ble import BLEAK_EXCEPTIONS, LEDBLE
 
 from homeassistant.components import bluetooth
 from homeassistant.components.bluetooth.match import ADDRESS, BluetoothCallbackMatcher
