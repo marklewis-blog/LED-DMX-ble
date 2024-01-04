@@ -63,16 +63,16 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 discovery_info.address, raise_on_progress=False
             )
             self._abort_if_unique_id_configured()
-            led_ble = LEDBLE(discovery_info.device)
+            leddmx_ble = LEDBLE(discovery_info.device)
             try:
-                await led_ble.update()
+                await leddmx_ble.update()
             except BLEAK_EXCEPTIONS:
                 errors["base"] = "cannot_connect"
             except Exception:  # pylint: disable=broad-except
                 _LOGGER.exception("Unexpected error")
                 errors["base"] = "unknown"
             else:
-                await led_ble.stop()
+                await leddmx_ble.stop()
                 return self.async_create_entry(
                     title=local_name,
                     data={

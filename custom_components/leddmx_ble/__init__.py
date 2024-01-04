@@ -32,7 +32,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
             f"Could not find LED BLE device with address {address}"
         )
 
-    led_ble = LEDBLE(ble_device)
+    leddmx_ble = LEDBLE(ble_device)
 
     @callback
     def _async_update_ble(
@@ -40,7 +40,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         change: bluetooth.BluetoothChange,
     ) -> None:
         """Update from a ble callback."""
-        led_ble.set_ble_device_and_advertisement_data(
+        leddmx_ble.set_ble_device_and_advertisement_data(
             service_info.device, service_info.advertisement
         )
 
@@ -56,16 +56,16 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     async def _async_update():
         """Update the device state."""
         try:
-            await led_ble.update()
+            await leddmx_ble.update()
         except BLEAK_EXCEPTIONS as ex:
             raise UpdateFailed(str(ex)) from ex
 
     startup_event = asyncio.Event()
-    cancel_first_update = led_ble.register_callback(lambda *_: startup_event.set())
+    cancel_first_update = leddmx_ble.register_callback(lambda *_: startup_event.set())
     coordinator = DataUpdateCoordinator(
         hass,
         _LOGGER,
-        name=led_ble.name,
+        name=leddmx_ble.name,
         update_method=_async_update,
         update_interval=timedelta(seconds=UPDATE_SECONDS),
     )
@@ -82,13 +82,13 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     except asyncio.TimeoutError as ex:
         raise ConfigEntryNotReady(
             "Unable to communicate with the device; "
-            f"Try moving the Bluetooth adapter closer to {led_ble.name}"
+            f"Try moving the Bluetooth adapter closer to {leddmx_ble.name}"
         ) from ex
     finally:
         cancel_first_update()
 
     hass.data.setdefault(DOMAIN, {})[entry.entry_id] = LEDBLEData(
-        entry.title, led_ble, coordinator
+        entry.title, leddmx_ble, coordinator
     )
 
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
@@ -96,7 +96,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     async def _async_stop(event: Event) -> None:
         """Close the connection."""
-        await led_ble.stop()
+        await leddmx_ble.stop()
 
     entry.async_on_unload(
         hass.bus.async_listen_once(EVENT_HOMEASSISTANT_STOP, _async_stop)
