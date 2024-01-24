@@ -12,10 +12,11 @@
       "connectable": false
     }
   ],
-  "codeowners": ["@bdraco", "@PierreAronnax"],
+  "codeowners": ["@1800Zeta"],
   "config_flow": true,
   "dependencies": ["bluetooth_adapters"],
   "documentation": "https://github.com/marklewis-blog/LED-DMX-ble",
-  "iot_class": "local_push",
+  "iot_class": "local_polling",
+  "requirements": ["bluetooth-data-tools==1.19.0", "led-ble==1.0.1"],
   "version": "0.0.1"
 }
