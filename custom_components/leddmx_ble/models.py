@@ -3,8 +3,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from leddmx_ble import LEDBLE
-
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
 

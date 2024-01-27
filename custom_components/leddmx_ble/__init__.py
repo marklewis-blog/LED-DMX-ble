@@ -5,8 +5,6 @@ import asyncio
 from datetime import timedelta
 import logging
 
-from leddmx_ble import BLEAK_EXCEPTIONS, LEDBLE
-
 from homeassistant.components import bluetooth
 from homeassistant.components.bluetooth.match import ADDRESS, BluetoothCallbackMatcher
 from homeassistant.config_entries import ConfigEntry
@@ -21,7 +19,6 @@ from .models import LEDBLEData
 PLATFORMS: list[Platform] = [Platform.LIGHT]
 
 _LOGGER = logging.getLogger(__name__)
-
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up LED BLE from a config entry."""

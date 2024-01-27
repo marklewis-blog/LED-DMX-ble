@@ -3,8 +3,6 @@ from __future__ import annotations
 
 from typing import Any
 
-from leddmx_ble import LEDBLE
-
 from homeassistant.components.light import (
     ATTR_BRIGHTNESS,
     ATTR_EFFECT,
